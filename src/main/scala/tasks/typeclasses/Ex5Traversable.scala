@@ -23,6 +23,11 @@ object Ex5Traversable:
   trait Traversable[T[_]]:
     def traverseAll[A](ta: T[A])(cons: A => Unit) : Unit
 
+  extension [A, T[_]](ta: T[A])
+    private def logAll(using traversable: Traversable[T]): Unit =
+      traversable.traverseAll(ta)(log)
+
+
   private def log[A](a: A): Unit = println("The next element is: "+a)
 
   @tailrec
@@ -44,8 +49,6 @@ object Ex5Traversable:
       case _ =>
 
 
-  private def logAll[A, T[_]](ta: T[A])(using traversable: Traversable[T]): Unit =
-    traversable.traverseAll(ta)(log)
 
   @main def tryTraversable =
     val seq = Cons(10, Cons(20, Cons(30, Nil())))
