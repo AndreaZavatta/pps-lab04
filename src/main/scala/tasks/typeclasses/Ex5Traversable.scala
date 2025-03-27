@@ -53,4 +53,8 @@ object Ex5Traversable:
 
     logAll(seq)
 
+    seq.logAll
+
     logAll(opt)
+
+    opt.logAll
