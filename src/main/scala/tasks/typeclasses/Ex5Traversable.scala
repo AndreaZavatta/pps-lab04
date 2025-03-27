@@ -24,8 +24,11 @@ object Ex5Traversable:
     def traverseAll[A](ta: T[A])(cons: A => Unit) : Unit
 
   extension [A, T[_]](ta: T[A])
-    private def logAll(using traversable: Traversable[T]): Unit =
-      traversable.traverseAll(ta)(log)
+    def logAllWith(f: A => Unit)(using traversable: Traversable[T]): Unit =
+      traversable.traverseAll(ta)(f)
+
+    def logAll(using traversable: Traversable[T]): Unit =
+      logAllWith(log)
 
 
   private def log[A](a: A): Unit = println("The next element is: "+a)
