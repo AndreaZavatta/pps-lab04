@@ -26,10 +26,8 @@ object Ex3Stacks:
     override type Stack[A] = Sequence[A]
     def empty[A]: Stack[A] = Nil()
     extension [A](stack: Stack[A])
-      def push(a: A): Stack[A] = pushHead(stack)(a)
+      def push(a: A): Stack[A] = Cons(a, stack)
       def pop(): Optional[(A, Stack[A])] = stack match
-        case Cons(h, t) =>
-          popHead(stack)
-          Optional.Just((h, t))
-        case Nil()      => Optional.Empty()
+        case Cons(h, t) => Optional.Just((h, t))
+        case _ => Optional.Empty()
       def asSequence(): Sequence[A] = stack

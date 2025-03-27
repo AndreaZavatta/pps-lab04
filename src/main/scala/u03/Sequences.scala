@@ -27,12 +27,6 @@ object Sequences: // Essentially, generic linkedlists
     def contains[A](l: Sequence[A])(elem: A): Boolean = l match
       case Cons(h, t) => h == elem || contains(t)(elem)
       case Nil()      => false
-    
-    def pushHead[A](l: Sequence[A])(other: A): Sequence[A] = Cons(other, l)
-
-    def popHead[A](l: Sequence[A]): Sequence[A] = l match
-      case Cons(_, t) => t
-      case Nil() => Nil()
 
 @main def trySequences =
   import Sequences.* 
