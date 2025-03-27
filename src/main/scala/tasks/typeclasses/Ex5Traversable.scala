@@ -30,10 +30,6 @@ object Ex5Traversable:
 
   private def log[A](a: A): Unit = println("The next element is: "+a)
 
-  @tailrec
-  def logAll[A](seq: Sequence[A]): Unit = seq match
-    case Cons(h, t) => log(h); logAll(t)
-    case _ => ()
 
   given Traversable[Optional] with
     override def traverseAll[A](ta: Optional[A])(cons: A => Unit): Unit = ta match
